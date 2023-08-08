@@ -1,3 +1,6 @@
+Teams Notification
+[![teams_notification](example_pic/teams_notification.png)](example_pic/teams_notification.png)
+
 ## 核心思路
 1. Fortigate Syslog 輸出至 Fail2ban server
 2. Fail2ban 根據 Syslog 行為封鎖與解封 IP，並發送通知到 Teams
@@ -43,6 +46,10 @@ crontab -e
 ```
 
 - Fortigate 阻擋列表引入外部連結 not_allow_country.log 清單 (internal web server or public service)
+[![not_allow_country](example_pic/allowed_countries.png)](example_pic/allowed_countries.png)
+
+- Fortigate VPN Portal Setting
+[![vpn_portal_setting](example_pic/vpn_portal_setting.png)](example_pic/vpn_portal_setting.png)
 
 
 ## 文件說明
@@ -67,6 +74,7 @@ fail2bandata/action.d/ 底下
         requests.post(teams_webhook_url, json=teams_message, verify=False)
 ```
 - countryban.py # 判斷觸發封鎖條件的 IP 來源國家，若在允許清單 allowed_countries.txt 中則返回 true，若不在允許清單 allowed_countries.txt 中則返回 false 並將 IP 寫入 not_allow_country.log
+
 
 ### 其他文件
 geoip 底下
