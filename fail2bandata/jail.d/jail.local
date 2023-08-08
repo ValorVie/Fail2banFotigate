@@ -39,4 +39,4 @@ logpath = /var/log/fortinet/syslog.log
 action = action-bancountry
 maxretry = 1
 findtime = 1 day
-bantime = 10 min
+bantime = 60 min
