@@ -74,3 +74,25 @@ geoip 底下
 - not_allow_country.log # 觸發封鎖條件後且不在允許國家清單內的 IP 紀錄
 - updategeoip.sh # 更新 geoip 數據庫腳本
 - checkip.py # 檢查 not_allow_country.log 中的 IP 國家
+
+## Reference
+crazy-max/docker-fail2ban: Fail2ban Docker image  
+https://github.com/crazy-max/docker-fail2ban
+
+Solved: Fortigate API - Remove address from group address - Fortinet Community  
+https://community.fortinet.com/t5/Support-Forum/Fortigate-API-Remove-address-from-group-address/td-p/210349
+
+REST API administrator | FortiGate / FortiOS 6.4.12  
+https://docs.fortinet.com/document/fortigate/6.4.12/administration-guide/399023
+
+Fortigate API Automation Using Python: API Token based and session-based authentication Postman - YouTube  
+https://www.youtube.com/watch?v=Avw2-0wVDlI&t=1194s
+
+Technical Tip: How to block SSL-VPN Connection fro... - Fortinet Community  
+https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-block-SSL-VPN-Connection-from-a-certain/ta-p/206883
+
+Technical Tip: How to limit SSL VPN login attempts... - Fortinet Community  
+https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-limit-SSL-VPN-login-attempts-and-block/ta-p/194229
+
+Variable interpolation appears to be broken for actioncheck · Issue #1907 · fail2ban/fail2ban  
+https://github.com/fail2ban/fail2ban/issues/1907
