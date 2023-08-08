@@ -1,0 +1,4 @@
+fail2bandata/action.d/.env
+fail2bandata/action.d/test.py
+fail2bandata/db/fail2ban.sqlite3
+geoip/GeoLite2-Country.mmdb
