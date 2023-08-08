@@ -1,6 +1,6 @@
 #!/bin/bash
 # 載入.env檔案中的環境變數
-source /root/docker/fail2ban/fail2bandata/action.d/.env
+source ../fail2bandata/action.d/.env
 
 cd /root/docker/fail2ban/geoip
 curl -o GeoLite2-Country.tar.gz "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=$LICENSE_KEY&suffix=tar.gz"

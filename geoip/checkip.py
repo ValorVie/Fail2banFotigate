@@ -1,7 +1,10 @@
 import geoip2.database
+import os
 
+# 設定相對路徑
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-def get_allowed_countries(file_path='/root/docker/fail2ban/geoip/allowed_countries.txt'): # 引入允許的國家清單
+def get_allowed_countries(file_path=os.path.join(dir_path, 'allowed_countries.txt')): # 引入允許的國家清單
     with open(file_path, 'r') as file:
         return [country.strip() for country in file.readlines()]
 
@@ -15,12 +18,12 @@ def get_country(ip, db_path):
         return None
 
 def check_and_remove_ips():
-    db_path = "/root/docker/fail2ban/geoip/GeoLite2-Country.mmdb"
+    db_path = os.path.join(dir_path, 'GeoLite2-Country.mmdb')
     allowed_countries = get_allowed_countries()
     
     # 讀取文件並儲存合適的 IP
     new_ips = []
-    with open('/root/docker/fail2ban/geoip/not_allow_country.log', 'r') as file:
+    with open(os.path.join(dir_path, 'not_allow_country.log'), 'r') as file:
         for line in file:
             ip = line.strip()
             country = get_country(ip, db_path)
@@ -28,7 +31,7 @@ def check_and_remove_ips():
                 new_ips.append(ip)
 
     # 將合適的 IP 寫回文件
-    with open('/root/docker/fail2ban/geoip/not_allow_country.log', 'w') as file:
+    with open(os.path.join(dir_path, 'not_allow_country.log'), 'w') as file:
         for ip in new_ips:
             file.write(f"{ip}\n")
 
