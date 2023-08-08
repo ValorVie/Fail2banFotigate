@@ -42,13 +42,16 @@ crontab -e
 0 22 * * * /usr/bin/python3 /PATH/Fail2banFotigate/geoip/checkip.py
 ```
 
+- Fortigate 阻擋列表引入外部連結 not_allow_country.log 清單 (internal web server or public service)
+
+
 ## 文件說明
-### 設定
+### 基本設定
 1. fail2bandata/jail.d/jail.local 處理封鎖規則，bandtime、findtime，跟時間等等
 2. fail2bandata/filter.d/general-forceful-browsing.conf fail2ban 的 filter，過濾 Syslog 符合正規表達式的 log 才觸發
 3. fail2bandata/action.d/ 主要文件為 action-ban-forceful-browsing.conf 以及 action-bancountry.conf，主要控制符合封鎖規則時應觸發的程式
 
-### 動作執行
+### 執行設定
 fail2bandata/action.d/ 底下
 - ban.py # 觸發封鎖條件的 IP 透過 fortigate API 加入 address list & BanVPNLoginFailed group
 - unban.py # 封鎖時間結束後 透過 fortigate API 刪除 address list & BanVPNLoginFailed group 中的解封 IP
