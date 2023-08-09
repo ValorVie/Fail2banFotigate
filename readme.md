@@ -24,7 +24,7 @@ Teams Notification
 1. 已安裝 docker & docker compose
 2. 已安裝 Python3 & pip
 3. fail2ban server 已有一套接收 Syslog 的機制，例如 rsyslog
-4. Fortigate Syslog 輸出到 fail2ban server /var/log/fortinet 底下
+4. Fortigate Syslog 輸出到 fail2ban server /var/log/fortinet/syslog.log 底下
 5. 修改 fail2bandata/action.d/example.env 檔案並另存為 .env，```TEAMS_WEBHOOK_URL```如果不需要使用Teams通知可以不用填
 
 ### 使用流程
