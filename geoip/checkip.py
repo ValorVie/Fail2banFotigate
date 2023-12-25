@@ -1,5 +1,6 @@
 import geoip2.database
 import os
+import ipaddress
 
 # 設定相對路徑
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -25,10 +26,27 @@ def check_and_remove_ips():
     new_ips = []
     with open(os.path.join(dir_path, 'not_allow_country.log'), 'r') as file:
         for line in file:
-            ip = line.strip()
-            country = get_country(ip, db_path)
-            if country not in allowed_countries:
-                new_ips.append(ip)
+            ip_or_network = line.strip()
+            try:
+                network = ipaddress.ip_network(ip_or_network, strict=False)
+                all_disallowed = True
+                for ip in network:
+                    country = get_country(str(ip), db_path)
+                    if country in allowed_countries:
+                        all_disallowed = False
+                        break
+                
+                if all_disallowed:
+                    new_ips.append(ip_or_network) # 添加整個網段
+                else:
+                    for ip in network:
+                        country = get_country(str(ip), db_path)
+                        if country not in allowed_countries:
+                            new_ips.append(str(ip)) # 添加單個IP地址
+            except ValueError:
+                country = get_country(ip_or_network, db_path)
+                if country not in allowed_countries:
+                    new_ips.append(ip_or_network)
 
     # 將合適的 IP 寫回文件
     with open(os.path.join(dir_path, 'not_allow_country.log'), 'w') as file:
